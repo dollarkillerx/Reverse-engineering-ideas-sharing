@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+.vs
+
+weChat\inMemTools\DLLIN\.vs
+weChat\inMemTools\DLLIN\Debug
+weChat\inMemTools\DLLIN\DLLIN\Debug
+
+
+
+weChat/inMemTools/DLLIN/.vs
+weChat/inMemTools/DLLIN/Debug
+weChat/inMemTools/DLLIN/DLLIN/Debug
+
+
