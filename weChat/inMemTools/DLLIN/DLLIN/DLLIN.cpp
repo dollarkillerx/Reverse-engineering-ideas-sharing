@@ -109,7 +109,7 @@ DWORD ProcessNameFindPID(LPCSTR ProcessName)
 // 2. 在微信内部申请一块内存用来放置dll路径
 void InjectDLL()
 {
-	CHAR pathStr[0x100] = { "D://" };
+	CHAR pathStr[0x100] = { "D://data//c//t//e.dll" };
 	// 1.获取到微信进程句柄
 	DWORD PID = ProcessNameFindPID(WECHAT_PROCESS_NAME);
 	if (PID == 0)
@@ -150,9 +150,27 @@ void InjectDLL()
 	CHAR test[0x100] = { 0 };
 	sprintf_s(test,"写入的地址为: %p",dllAddr);
 	OutputDebugString(test);
+
+
+	
+
+	// 注入
+
+	// 获取需要执行的方法 地址
+	HMODULE k32 = GetModuleHandle("Kernel32.all");
+	LPVOID loadAdd = GetProcAddress(k32, "LoadLibraryA"); // LoadLibraryW 是需要UNICODE字符串（宽字符串）  上面是窄字符串所有选用LoadLibraryA
+	
+	// 创建一个在另一个进程的虚拟地址空间中运行的线程
+	// params: 线程句柄,描述符(NULL默认安全描述符),初始堆栈大小,执行函数的地址(当前为loadLibrary地址),调用函数的参数(当前是dll的路径),控制线程创建的标志(0立即运行)，指向接收线程标识符的变量的指针(null不接受线程标识符)
+	HANDLE exec = CreateRemoteThread(process,NULL,0,(LPTHREAD_START_ROUTINE)loadAdd,dllAddr,0,NULL);
+	if (exec == NULL)
+	{
+		MessageBox(NULL, "执行失败", "错误", 0);
+		return;
+	}
 }
 
 // 3. 写入dll路径  通过远程线程执行函数  执行LoadLibaray函数加载写入路径的dll
 
 
-
+// 卸载DLL FreeLibrary()
