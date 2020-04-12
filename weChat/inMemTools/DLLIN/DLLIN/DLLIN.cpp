@@ -158,7 +158,13 @@ void InjectDLL()
 
 	// 获取需要执行的方法 地址
 	HMODULE k32 = GetModuleHandle("Kernel32.all");
+
+	#ifdef _UNICODE
+	LPVOID loadAdd = GetProcAddress(k32, "LoadLibraryW"); // LoadLibraryW 是需要UNICODE字符串（宽字符串）  上面是窄字符串所有选用LoadLibraryA
+	#else
 	LPVOID loadAdd = GetProcAddress(k32, "LoadLibraryA"); // LoadLibraryW 是需要UNICODE字符串（宽字符串）  上面是窄字符串所有选用LoadLibraryA
+	#endif
+
 	
 	// 创建一个在另一个进程的虚拟地址空间中运行的线程
 	// params: 线程句柄,描述符(NULL默认安全描述符),初始堆栈大小,执行函数的地址(当前为loadLibrary地址),调用函数的参数(当前是dll的路径),控制线程创建的标志(0立即运行)，指向接收线程标识符的变量的指针(null不接受线程标识符)
@@ -168,6 +174,7 @@ void InjectDLL()
 		MessageBox(NULL, "执行失败", "错误", 0);
 		return;
 	}
+
 }
 
 // 3. 写入dll路径  通过远程线程执行函数  执行LoadLibaray函数加载写入路径的dll
