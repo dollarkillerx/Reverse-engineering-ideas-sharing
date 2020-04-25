@@ -94,3 +94,25 @@ void EasyMessage(LPCSTR data)
  * wxid:16B4A58
  */
 
+
+// 获取wechat 基质
+DWORD getWechatAddr()
+{
+	// 因为这里DLL已经注入到 进程中
+
+	// 直接获取就行
+	HMODULE addr = LoadLibrary("WeChatWin.dll");
+	return (DWORD)addr;
+}
+
+// 读取内存数据
+VOID readWechatData()
+{
+	// 获取wechat.dll 基础地址
+	DWORD wechatAddr = getWechatAddr();
+
+	// 装数据容器  (长度100 零填充)
+	CHAR wxid[0x100] = {0}; 
+
+	
+}

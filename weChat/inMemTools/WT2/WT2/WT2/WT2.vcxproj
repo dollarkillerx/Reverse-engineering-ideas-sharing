@@ -157,6 +157,7 @@
     <ClInclude Include="WT2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dl.cpp" />
     <ClCompile Include="WT2.cpp" />
   </ItemGroup>
   <ItemGroup>
