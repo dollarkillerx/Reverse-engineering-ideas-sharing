@@ -6,7 +6,6 @@
 #define IDR_MAINFRAME                   128
 #define IDC_EDIT1                       1000
 #define IDC_DLL                         1002
-#define IDC_BUTTON1                     1003
 #define IDC_Openfile                    1003
 
 // Next default values for new objects

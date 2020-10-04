@@ -1,4 +1,6 @@
 ﻿  DLLInjection.cpp
   DLLInjectionDlg.cpp
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\DLLInjection\DLLInjection\injection.h(82,25): warning C4101: “e”: 未引用的局部变量
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\DLLInjection\DLLInjection\injection.h(118,25): warning C4101: “e”: 未引用的局部变量
   正在生成代码...
   DLLInjection.vcxproj -> X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\DLLInjection\Debug\DLLInjection.exe

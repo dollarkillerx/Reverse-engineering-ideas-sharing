@@ -37,4 +37,7 @@ public:
 	afx_msg void OnClose();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnBnClickedButton1();
+	CString target;
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedCancel();
 };

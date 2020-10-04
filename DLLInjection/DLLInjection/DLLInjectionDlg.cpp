@@ -7,6 +7,7 @@
 #include "DLLInjection.h"
 #include "DLLInjectionDlg.h"
 #include "afxdialogex.h"
+#include "injection.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,6 +21,7 @@
 CDLLInjectionDlg::CDLLInjectionDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_DLLINJECTION_DIALOG, pParent)
 	, dll_path(_T(""))
+	, target(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -28,6 +30,7 @@ void CDLLInjectionDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_DLL, dll_path);
+	DDX_Text(pDX, IDC_EDIT1, target);
 }
 
 BEGIN_MESSAGE_MAP(CDLLInjectionDlg, CDialogEx)
@@ -36,7 +39,9 @@ BEGIN_MESSAGE_MAP(CDLLInjectionDlg, CDialogEx)
 //	ON_WM_DROPFILES()
 	ON_WM_CLOSE()
 	ON_WM_DROPFILES()
-	ON_BN_CLICKED(IDC_BUTTON1, &CDLLInjectionDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_Openfile, &CDLLInjectionDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDOK, &CDLLInjectionDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDCANCEL, &CDLLInjectionDlg::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
@@ -112,7 +117,7 @@ void CDLLInjectionDlg::OnClose()
 void CDLLInjectionDlg::OnDropFiles(HDROP hDropInfo)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	MessageBoxW(TEXT("IN"));
+	MessageBox(TEXT("IN"));
 	// CDialogEx::OnDropFiles(hDropInfo);
 }
 
@@ -124,7 +129,7 @@ void CDLLInjectionDlg::OnBnClickedButton1()
 
 	// TODO: Add your control notification handler code here   
 	// 设置过滤器   
-	TCHAR szFilter[] = _T("DLL(*.dll)|*.txt|所有文件(*.*)|*.*||");
+	TCHAR szFilter[] = _T("DLL(*.dll)|*.dll|所有文件(*.*)|*.*||");
 	// 构造打开文件对话框   
 	CFileDialog fileDlg(TRUE, _T("dll"), NULL, 0, szFilter, this);
 	CString strFilePath;
@@ -137,5 +142,46 @@ void CDLLInjectionDlg::OnBnClickedButton1()
 		// SetDlgItemText(IDC_Openfile, strFilePath);
 		dll_path = strFilePath;
 		UpdateData(FALSE);
+	}
+}
+
+
+void CDLLInjectionDlg::OnBnClickedOk()
+{
+	UpdateData(TRUE);
+	DWORD pid = ProcessNameFindPID(target.GetBuffer(target.GetLength()));
+
+	/*TCHAR str[20];
+	wsprintf(str, "%d", pid);
+	MessageBox(str);*/
+	if (pid == 0) {
+		MessageBox(target + "  进程不存在");
+	}
+
+	if (dll_path == "")
+	{
+		MessageBox("DLL 未选择!!!");
+	}
+
+	if (InjectDLL(pid, dll_path.GetBuffer(dll_path.GetLength())))
+	{
+		MessageBox("DLL注入成功");
+	}
+}
+
+void CDLLInjectionDlg::OnBnClickedCancel()
+{
+	UpdateData(TRUE);
+	DWORD pid = ProcessNameFindPID(target.GetBuffer(target.GetLength()));
+
+	/*TCHAR str[20];
+	wsprintf(str, "%d", pid);
+	MessageBox(str);*/
+	if (pid == 0) {
+		MessageBox(target + "  进程不存在");
+	}
+	if (UnInjectDll(pid, dll_path.GetBuffer(dll_path.GetLength())))
+	{
+		MessageBox("DLL卸载成功");
 	}
 }
