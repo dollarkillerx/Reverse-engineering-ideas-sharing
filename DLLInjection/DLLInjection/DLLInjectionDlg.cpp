@@ -156,11 +156,13 @@ void CDLLInjectionDlg::OnBnClickedOk()
 	MessageBox(str);*/
 	if (pid == 0) {
 		MessageBox(target + "  进程不存在");
+		return;
 	}
 
 	if (dll_path == "")
 	{
 		MessageBox("DLL 未选择!!!");
+		return;
 	}
 
 	if (InjectDLL(pid, dll_path.GetBuffer(dll_path.GetLength())))
@@ -179,7 +181,15 @@ void CDLLInjectionDlg::OnBnClickedCancel()
 	MessageBox(str);*/
 	if (pid == 0) {
 		MessageBox(target + "  进程不存在");
+		return;
 	}
+
+	if (dll_path == "")
+	{
+		MessageBox("DLL 未选择!!!");
+		return;
+	}
+	
 	if (UnInjectDll(pid, dll_path.GetBuffer(dll_path.GetLength())))
 	{
 		MessageBox("DLL卸载成功");
