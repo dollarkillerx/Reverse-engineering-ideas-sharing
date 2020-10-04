@@ -17,5 +17,7 @@
     - 基址 (基地址 加 偏移量)  一级指针  [参考](https://www.xuepojie.com/thread-29793-1-1.html)
 - 通过公用方法快速获取地址 [demo3]    
 
+### 复习MFC (MFC_REVIEW)
+
 ### WeChat逆向篇章 [weChat]
 

@@ -1,0 +1,10 @@
+﻿  pch.cpp
+  CDialogExec.cpp
+  CDialogShow.cpp
+  mfcReview.cpp
+  mfcReviewDlg.cpp
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 210 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  mfcReview.vcxproj -> X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\mfc_review\mfcReview\Release\mfcReview.exe
