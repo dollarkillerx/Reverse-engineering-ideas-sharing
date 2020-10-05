@@ -161,3 +161,28 @@ void CDialogShow::OnBnClickedButton2xx()
 	MessageBoxW(ssr1);
 }
 ```
+
+
+### 关于MDF DLL
+需要在初始化阶段显示
+```cpp
+// Chook1App 初始化
+
+BOOL Chook1App::InitInstance()
+{
+	CWinApp::InitInstance();
+
+	// 显示Dialog
+	index dig;
+	dig.DoModal();
+	// OR    =>    // CDialog dlg(dlg_id);    dlg.DoModal()
+
+	
+	return TRUE;
+}
+
+```
+调试DLL
+```
+rundll32 DLLName.dll,DllMain
+```

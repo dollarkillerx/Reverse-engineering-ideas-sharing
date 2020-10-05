@@ -1,0 +1,9 @@
+﻿  hook1.cpp
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\wechat2\hook1\hook1\wx_tools.h(43,19): warning C4477: “sprintf_s”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“DWORD”
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\wechat2\hook1\hook1\wx_tools.h(50,18): warning C4477: “sprintf_s”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“unsigned long”
+  index.cpp
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\wechat2\hook1\hook1\wx_tools.h(43,19): warning C4477: “sprintf_s”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“DWORD”
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\wechat2\hook1\hook1\wx_tools.h(50,18): warning C4477: “sprintf_s”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“unsigned long”
+  正在生成代码...
+X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\wechat2\hook1\hook1\wx_tools.h(51): warning C4172: 返回局部变量或临时变量的地址: data
+LINK : fatal error LNK1168: 无法打开 X:\Users\github\Desktop\Github\Reverse-engineering-ideas-sharing\wechat2\hook1\Debug\hook1.dll 进行写入
